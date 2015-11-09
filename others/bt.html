@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>BT</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		 <!-- Custom Theme files -->
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+   		 <!-- Custom Theme files -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		</script>
+	</head>
+	<body>
+		<div class="socail-btn-col1">
+			<ul>
+				<a id="port1">	
+					<li><a href=<input class="sensor-btn" type="button" value="Temperature"/></li>
+				</a>
+			</ul>
+	</body>
+
+<script type="text/javascript">
+var IPAddress="192.168.1.135";
+var start;
+var end;
+
+//  Get current page url using JavaScript
+var currentPageUrl = "";
+if (typeof this.href === "undefined") {
+    currentPageUrl = document.location.toString().toLowerCase();
+}
+else {
+    currentPageUrl = this.href.toString().toLowerCase();
+}
+
+start=currentPageUrl.search("http://")+7;
+end=currentPageUrl.search(":80");
+IPAddress=currentPageUrl.substring(start,end);
+
+function loadXMLDoc()
+{
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+          {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+                  }
+    else
+          {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+    xmlhttp.onreadystatechange=function()
+          {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                        {
+                                document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                                    }
+                  }
+    xmlhttp.open("GET","http://68.232.126.94:10110/?cmd=ON",true);
+    xmlhttp.send();
+}
+
+
+document.getElementById("port1").onclick = function () {
+    loadXMLDoc;
+};
+
+
+
+</script>
+
+</html>
+

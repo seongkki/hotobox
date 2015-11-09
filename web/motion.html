@@ -1,0 +1,113 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset='utf-8'>	
+		<title>Hotobox | Motion Sensor</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<link rel="shortcut icon" href="../favicon.png">
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900,400italic|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+		<!-- Custom Theme files -->
+		<link href="../css/style.css" rel='stylesheet' type='text/css' />
+   		 <!-- Custom Theme files -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		</script>
+	</head>
+
+	<body>
+		<div class="main">
+		<div class="container">
+			<div class="4-col-grids">
+				<div class="col-md-3">
+					<div class="1-col-grids">
+						<div class="profile text-center">
+							<div class="profile-head2">
+								<a href="#"><span> </span></a>
+							</div>
+							<div class="profile-info">
+								<h2><a href="#">Motion Sensor</a></h2>
+								<span>PIR | Hotobox</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="2-col-grids">
+						<div class="status">
+							<div class="status-head text-center">
+								<h3>RECENT PHOTO</h3>
+								<br><br>	
+									
+									<div class="image">
+									</div>	
+							               <div class="image-meta">
+              
+              
+            </div>
+          </div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<br>
+				<br>
+				<div class="col-md-3">
+					<div class="col-3">
+					
+						<div class="clearfix"> </div>
+						<div class="socail-btn-col1">
+							<ul>
+								<li><a href="http://68.232.126.94:8080?cmd=OFF"><input class="twi-btn" type="button" value="Watch Live Stream" /></li>
+								<li><a id="main"><input class="twi-btn" type="button" value="MAIN MENU" /></li>
+								<div class="clearfix"> </div>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="col-md-3">
+						
+						
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+		</div>
+		</div>
+	</body>
+	 <script>
+	console.log("heylo");
+	$(document).ready(function(){
+		var dir = "/photo/";
+		var fileextension=".jpg";
+		$.ajax({
+		//This will retrieve the contents of the folder if the folder is configured as ‘browsable’
+		url: dir,
+		success: function (data) {
+		//Lsit all png file names in the page
+		console.log("hello");
+		$(data).find("a:contains(" + fileextension + ")").each(function () {
+		var filename = this.href.replace(window.location.host, "").replace("http:///","");
+		$("body").append($(""));
+		});
+		}
+		});
+		})
+
+	
+		console.log("hey");
+		document.getElementById("main").setAttribute("href", "main.html");
+	</script>
+</html>
+

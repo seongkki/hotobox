@@ -1,0 +1,16 @@
+{
+"sensorVar":
+        {
+         "humidVar": 2,
+         "dustVar": 3,
+         "pirVar": 0,
+         "tempVar": 13
+        },
+"pids":
+        {
+        "tempPID": 1234,
+        "humidPID": 2345,
+        "pirPID": 3456,
+        "dustPID": 4567
+        }
+}

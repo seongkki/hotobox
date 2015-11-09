@@ -1,0 +1,219 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Soft-Flat-UI-Kit for Iphone, Android &nbsp; Smartphone Mobile Website Template | Home : w3layouts</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		 <!-- Custom Theme files -->
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+   		 <!-- Custom Theme files -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		</script>
+	</head>
+	<body>
+		<div class="main">
+		<!----container---->
+		<div class="container">
+			<!----- content ----->
+			<div class="4-col-grids">
+				<div class="col-md-3">
+					<div class="1-col-grids">
+						<!----profile---->
+						<div class="profile text-center">
+							<div class="profile-info">
+								<h2><a href="#">Outlet Control</a></h2>
+								<span>Hotobox | Electricity</span>
+							</div>
+						</div>
+						<br><br><br>
+						<!----profile---->
+					
+						<!---- PIE CHART ---->
+					</div>
+				</div>
+				<!----col-2---->
+		
+				<!---//col-2---->
+				<!--- col-3 ---->
+				<div class="col-md-3">
+					<div class="col-3">
+						<!---- to-day --->
+						<!---- to-day --->
+						<div class="status-head text-center">
+						<h3><br><br>
+						Temperature Sensor<br><br><br>
+	
+						<div class="clearfix"> </div>
+						<!--- socail-btn-col1 ---->
+						<div class="socail-btn-col1">
+							<ul>
+							<a id="port1">
+								<li><input class="twi-btn" type="button" value="SENSING ON" /></li>
+							</a>
+								<div class="clearfix"> </div>
+							</ul>
+						</div>
+						<!--- socail-btn-col1 ---->
+					</div></h3></div>
+				<!--- //col-3 ---->
+				<br><br>
+				<!---- to-day --->
+                        <div class="status-head2 text-center">
+                        <h3><br><br>
+                        Humidity Sensor<br><br><br>
+
+                        <div class="clearfix"> </div>
+                        <!--- socail-btn-col1 ---->
+                        <div class="socail-btn-col1">
+                            <ul>
+                            <a id="port1">
+                                <li><input class="twi-btn" type="button" value="SENSING ON / AUTOMODE / OFF" /></li>
+                            </a>
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
+                        <!--- socail-btn-col1 ---->
+                    </div></h3></div>
+                <!--- //col-3 ---->
+				<br><br>
+				<!---- to-day --->
+                        <div class="status-head3 text-center">
+                        <h3><br><br>
+                        Dust Sensor<br><br><br>
+
+                        <div class="clearfix"> </div>
+                        <!--- socail-btn-col1 ---->
+
+                        <div class="socail-btn-col1">
+                            <ul>
+                            <a id="port1">
+                                <li><input class="twi-btn" type="button" value="SENSING ON" /></li>
+                            </a>
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
+                        <!--- socail-btn-col1 ---->
+                    </div></h3></div>
+                <!--- //col-3 ---->
+				 <br><br>
+                <!---- to-day --->
+                        <div class="status-head4 text-center">
+                        <h3><br><br>
+                        Camera Sensor<br><br><br>
+
+                        <div class="clearfix"> </div>
+                        <!--- socail-btn-col1 ---->
+                        <div class="socail-btn-col1">
+                            <ul>
+                            <a id="port1">
+                                <li><input class="twi-btn" type="button" value="ON / OFF"" /></li>
+                            </a>
+                            <a id="port2">
+                                <li><input class="twi-btn" type="button" value="Take a Piture" /></li>
+                            </a>
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
+                        <!--- socail-btn-col1 ---->
+                    </div></h3></div>
+                <!--- //col-3 ---->
+
+				</div>
+				<!--- col-4 ---->
+				<div class="col-4">
+					<div class="col-md-3">
+						<!--- subscribe --->
+						<!--- subscribe --->
+						<!--- subscribe --->
+						<!--- subscribe --->
+						<!--- socail-btn-col2 ---->
+						<!--- socail-btn-col2 ---->
+					</div>
+				</div>
+				<!--- //col-4 ---->
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+			<!----- content ----->
+		</div>
+		<!----container---->
+		</div>
+	</body>
+	<script type="text/javascript">
+    		var IPAddress="192.168.1.102";
+   		var start;
+   		var end;
+		var port = 8888
+		var glob = 0;
+		
+/*		var list = document.getElementsById("port1");		
+		list.getElementsByClassName("face-btn")[0].onclick = function () {
+			location.href = "http://"+IPAddress+":8080?cmd=ON";
+		}
+*/
+		
+    		//  Get current page url using JavaScript
+    		var currentPageUrl = "";
+    		if (typeof this.href === "undefined") {
+            		currentPageUrl = document.location.toString().toLowerCase();
+    		}
+    		else {
+        		currentPageUrl = this.href.toString().toLowerCase();
+    		}
+
+		start=currentPageUrl.search("http://")+7;
+		end=currentPageUrl.search(":10107");
+		IPAddress=currentPageUrl.substring(start,end);
+
+		function loadXMLDoc()
+{
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+          {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+                  }
+    else
+          {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+    xmlhttp.onreadystatechange=function()
+          {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                        {
+                                document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                                    }
+                  }
+    xmlhttp.open("GET","http://68.232.126.94:10110/?cmd=ON",true);
+    xmlhttp.send();
+}
+
+
+	
+		document.getElementById("port1").onclick = function () {
+			loadXMLDoc();
+		}
+
+		document.getElementById("port2").onclick = function () {
+		     location.href = "http://68.232.126.94:8080?cmd=ON";
+		}
+
+		document.getElementById("port3").onclick = function () {
+			location.href = "http://68.232.126.94:8080?cmd=ON";
+		}
+
+        document.getElementById("port4").onclick = function () {
+			location.href = "http://68.232.126.94:8080?cmd=ON";
+		}   
+
+</script>
+
+</html>
+

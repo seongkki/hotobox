@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+
+		var spreadsheetURL = 'https://docs.google.com/spreadsheets/d/1NSEbUWojJsMzhH0hi8kx8ic7Xxuq29z0c7BXs-inzb8/edit#gid=0';
+		google.load("visualization", '1', {packages:['corechart']});
+		google.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+		  var query = new google.visualization.Query(spreadsheetURL);
+		  	$.getJSON("https://spreadsheets.google.com/feeds/list/1NSEbUWojJsMzhH0hi8kx8ic7Xxuq29z0c7BXs-inzb8/od6/public/basic?hl=en_US&alt=json", function(data) {
+			colLen = data.feed.entry.length;
+			console.log(colLen);
+			limit = 4;
+			var offset = colLen - limit;
+			console.log(offset);
+			queryOption = "limit "+limit+" offset "+offset;
+			console.log(queryOption);
+
+		 	query.setQuery(queryOption);
+		  	query.send(handleQueryResponse);
+			});
+		}
+
+		function handleQueryResponse(response) {
+			if (response.isError()) {
+				alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+				return;
+			}
+
+			var data = response.getDataTable();
+			var chart = new google.visualization.LineChart(document.getElementById('dailychart'));
+			var options = {
+				title: "Temperature Daily Status",
+				width: 800, height: 480,
+				legend: 'none',
+					pointSize: 5
+		      	};
+		  	chart.draw(data, options);
+		}
+		</script>
+
+		<title>Data from a Spreadsheet</title>
+	</head>
+
+	<body>
+		<span id='dailychart'></span>
+	</body>
+</html>

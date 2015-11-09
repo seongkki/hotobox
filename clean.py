@@ -1,0 +1,51 @@
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(10, GPIO.OUT)
+GPIO.setup(9, GPIO.OUT)
+GPIO.setup(14, GPIO.OUT)
+GPIO.setup(15, GPIO.OUT)
+GPIO.setup(12, GPIO.OUT)
+GPIO.setup(11, GPIO.OUT)
+GPIO.setup(22, GPIO.IN)
+GPIO.setup(23, GPIO.IN)
+GPIO.setup(24, GPIO.IN)
+GPIO.setup(25, GPIO.IN)
+GPIO.setup(5, GPIO.IN)
+GPIO.setup(6, GPIO.OUT)
+GPIO.setup(13, GPIO.OUT)
+GPIO.setup(16, GPIO.OUT)
+GPIO.setup(19, GPIO.OUT)
+GPIO.setup(26, GPIO.OUT)
+GPIO.setup(20, GPIO.OUT)
+GPIO.setup(7, GPIO.OUT)
+GPIO.setup(20, GPIO.OUT)
+GPIO.setup(8, GPIO.OUT)
+
+GPIO.setup(21, GPIO.OUT)
+GPIO.setup(18, GPIO.OUT)
+GPIO.setup(17, GPIO.OUT)
+
+GPIO.output(10, 0)
+GPIO.output(19, 0)
+GPIO.output(20, 0)
+GPIO.output(16, 0)
+GPIO.output(26, 0)
+GPIO.output(20, 0)
+GPIO.output(21, 0)
+GPIO.output(9, 0)
+GPIO.output(11, 0)
+GPIO.output(12, 0)
+GPIO.output(7, 0)
+GPIO.output(8, 0)
+GPIO.output(14, 0)
+GPIO.output(15,0)
+GPIO.output(6, 0)
+
+
+GPIO.output(17,0)
+GPIO.output(18,0)
+
+GPIO.cleanup()

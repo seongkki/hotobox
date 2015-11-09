@@ -1,0 +1,23 @@
+{
+    "interrupt": {
+        "dust": 0, 
+        "pir": 0, 
+        "humid": 0, 
+        "temp": 0
+    }, 
+    "pids": {
+        "parent": 6319
+    }, 
+    "stat": {
+        "dust": 1, 
+        "pir": 0, 
+        "humid": 0, 
+        "temp": 0
+    }, 
+    "sensorCounter": {
+        "dust": 1, 
+        "pir": 0, 
+        "humid": 3, 
+        "temp": 26
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "interrupt": {
+        "dust": 0, 
+        "pir": 0, 
+        "humid": 0, 
+        "temp": 0
+    }
+}

@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Hotobox | Outlet Control</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		 <!-- Custom Theme files -->
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+   		 <!-- Custom Theme files -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		</script>
+	</head>
+	<body>
+		<div class="main">
+		<!----container---->
+		<div class="container">
+			<!----- content ----->
+			<div class="4-col-grids">
+				<div class="col-md-3">
+					<div class="1-col-grids">
+						<!----profile---->
+						<div class="profile text-center">
+							<div class="profile-info">
+								<h2><a href="http://68.232.126.94:10110/bb.html">Outlet Control</a></h2>
+								<span>Hotobox | Electricity</span>
+							</div>
+						</div>
+						<br><br><br>
+					</div>
+				</div>
+				<!----col-2---->
+		
+				<!---//col-2---->
+				<!--- col-3 ---->
+				<div class="col-md-3">
+					<div class="col-3">
+						<!---- to-day --->
+						<!---- to-day --->
+						<div class="status-head text-center">
+						<h3><br><br>
+						Temperature Sensor<br><br><br>
+	
+						<div class="clearfix"> </div>
+						<div class="socail-btn-col1">
+							<ul>
+							<li><input class="twi-btn" type="button" value="" /></li>
+							</ul>
+						</div>
+					</div></h3></div>
+				<br><br>
+				<div class="col-md-3">
+                                        <div class="col-3">
+                                                <!---- to-day --->
+                                                <!---- to-day --->
+                                                <div class="status-head2 text-center">
+                                                <h3><br><br>
+                                                Humidity Sensor<br><br><br>
+
+                                                <div class="clearfix"> </div>
+                                                <div class="socail-btn-col1">
+                                                        <ul>
+                                                        <li><input class="twi-btn" type="button" value="" /></li>
+                                                        </ul>
+                                                </div>
+                                        </div></h3></div>
+                                <br><br>
+				<div class="col-md-3">
+                                        <div class="col-3">
+                                                <!---- to-day --->
+                                                <!---- to-day --->
+                                                <div class="status-head3 text-center">
+                                                <h3><br><br>
+                                                Dust Sensor<br><br><br>
+
+                                                <div class="clearfix"> </div>
+                                                <div class="socail-btn-col1">
+                                                        <ul>
+                                                        <li><input class="twi-btn" type="button" value="" /></li>
+                                                        </ul>
+                                                </div>
+                                        </div></h3></div>
+                                <br><br>
+
+
+
+
+	</body>
+	<script>
+ 		var tempStat = 0;
+		var humidStat = 0;
+		var dustStat = 0;			
+	
+		var tempInt = 0;
+		var humidInt = 0;
+		var dustInt = 0;
+
+		//update variable status on document load
+		$(document).ready(function() {
+			loadJSON();
+  		 });
+
+		//loads variables from json file
+		function loadJSON() {
+                	$.getJSON('sensorVar.json', function(jd) {
+                                statCheck(jd);
+                       	});
+                }
+
+		function writeJSON(jd) {
+			console.log("updated json");
+			jd.interrupt.temp = tempInt;
+			jd.interrupt.humid = humidInt;
+			jd.interrupt.dust = dustInt;
+	                loadJSON() 
+			$.ajax
+        	        ({
+                		type: "POST",
+	                	url: "http://68.232.126.94:10110",
+        	        	crossDomain:true,
+                		dataType: "json",
+	                	data: JSON.stringify(jsondat, null, 4)
+	                }).done(function () {
+               			 //console.log(data);
+                   	})
+		}
+
+		//to check button status	
+		function iterationCheck(button, iteration) {
+		        if (iteration % 3 == 0)
+	                {
+        	                button.style.backgroundColor = "#FF6666";
+                                button.setAttribute("value", "SENSOR OFF");
+                        }
+                        else if (iteration % 3 == 1)
+                        {
+                		button.style.backgroundColor = "#00b0f0";
+                                button.setAttribute("value", "SENSOR ON");
+                        }
+                        else if (iteration % 3 == 2)
+                        {
+                        	button.style.backgroundColor = "green";
+                                button.setAttribute("value", "AUTOMODE");
+                        }	
+		}
+
+		//list of buttons		
+		var x = document.getElementsByClassName("twi-btn");
+
+		console.log(x);	
+		//tracks on button status
+		function statCheck(jd){
+			
+			jsondat = jd;
+			if(jd.sensorCounter.temp == 0 && jd.sensorCounter.humid == 0 && jd.sensorCounter.dust ==0)
+			{
+				tempStat = jd.sensorCounter.temp;
+				humidStat = jd.sensorCounter.humid;
+				dustStat = jd.sensorCounter.dust;
+					
+				console.log("status check complete");
+				iterationCheck(x[0], tempStat);
+				iterationCheck(x[1], humidStat);
+				iterationCheck(x[2], dustStat);
+			}
+		}
+
+		//temperature sensor on click
+		x[0].onclick = function () {
+			
+			tempInt = 1;
+			tempStat = tempStat + 1;
+			console.log(tempStat);
+			iterationCheck(x[0], tempStat);
+			writeJSON(jsondat);
+		}
+		//humid sensor on click
+		x[1].onclick = function () {
+			
+			humidInt = 1;
+			humidStat += 1;
+       //                 buttonStatus(x[1], humidStat);
+			writeJSON(jsondat);
+                }		
+		
+		//dust sensor on click
+	        x[2].onclick = function () {
+
+                        dustInt = 1;
+			dustStat += 1;
+         //            	buttonStatus(x[2], dustStat);
+			writeJSON(jsondat);
+                }
+
+</script>

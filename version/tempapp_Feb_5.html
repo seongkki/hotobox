@@ -1,0 +1,242 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Soft-Flat-UI-Kit for Iphone, Android &nbsp; Smartphone Mobile Website Template | Home : w3layouts</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="The free Soft-Flat-UI-Kit Iphone web template, Andriod web template, Smartphone web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery.min.js"></script>
+		 <!-- Custom Theme files -->
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+   		 <!-- Custom Theme files -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		</script>
+	</head>
+	<body>
+		<div class="main">
+		<!----container---->
+		<div class="container">
+			<!----- content ----->
+			<div class="4-col-grids">
+				<div class="col-md-3">
+					<div class="1-col-grids">
+						<!----profile---->
+						<div class="profile text-center">
+							<div class="profile-head2">
+								<a href="#"><span> </span></a>
+							</div>
+							<div class="profile-info">
+								<h2><a href="#">Temperature Sensor</a></h2>
+								<span>DHT11 | Hotobox</span>
+							</div>
+						</div>
+						<!----profile---->
+					</div>
+				</div>
+				<!----col-2---->
+				<div class="col-md-3">
+					<div class="2-col-grids">
+						<!---- status ---->
+						<div class="status">
+							<div class="status-head text-center">
+								<h3>DAILY STATS</h3>
+							</div>
+							<!---start-chart---->
+							<!--graph-->
+							<link rel="stylesheet" href="css/graph.css">
+							<script src="js/jquery.flot.min.js"></script>
+							<!--//graph-->
+									<script>
+									$(document).ready(function () {
+									
+										// Graph Data ##############################################
+										var graphData = [{
+												// Returning Visits
+												data: [ [6, 4500], [7,3500], [8, 6550], [9, 7600], ],
+												color: '#59676B',
+												points: { radius: 4, fillColor: '#59676B' }
+											}
+										];
+									
+										// Lines Graph #############################################
+										$.plot($('#graph-lines'), graphData, {
+											series: {
+												points: {
+													show: true,
+													radius: 1
+												},
+												lines: {
+													show: true
+												},
+												shadowSize: 0
+											},
+											grid: {
+												color: '#59676B',
+												borderColor: 'transparent',
+												borderWidth: 10,
+												hoverable: true
+											},
+											xaxis: {
+												tickColor: 'transparent',
+												tickDecimals: false
+											},
+											yaxis: {
+												tickSize: 1200
+											}
+										});
+									
+										// Bars Graph ##############################################
+										$.plot($('#graph-bars'), graphData, {
+											series: {
+												bars: {
+													show: true,
+													barWidth: .9,
+													align: 'center'
+												},
+												shadowSize: 0
+											},
+											grid: {
+												color: '#fff',
+												borderColor: 'transparent',
+												borderWidth: 20,
+												hoverable: true
+											},
+											xaxis: {
+												tickColor: 'transparent',
+												tickDecimals: 2
+											},
+											yaxis: {
+												tickSize: 1000
+											}
+										});
+									
+										// Graph Toggle ############################################
+										$('#graph-bars').hide();
+									
+										$('#lines').on('click', function (e) {
+											$('#bars').removeClass('active');
+											$('#graph-bars').fadeOut();
+											$(this).addClass('active');
+											$('#graph-lines').fadeIn();
+											e.preventDefault();
+										});
+									
+										$('#bars').on('click', function (e) {
+											$('#lines').removeClass('active');
+											$('#graph-lines').fadeOut();
+											$(this).addClass('active');
+											$('#graph-bars').fadeIn().removeClass('hidden');
+											e.preventDefault();
+										});
+									
+										// Tooltip #################################################
+										function showTooltip(x, y, contents) {
+											$('<div id="tooltip">' + contents + '</div>').css({
+												top: y - 16,
+												left: x + 20
+											}).appendTo('body').fadeIn();
+										}
+									
+										var previousPoint = null;
+									
+										$('#graph-lines, #graph-bars').bind('plothover', function (event, pos, item) {
+											if (item) {
+												if (previousPoint != item.dataIndex) {
+													previousPoint = item.dataIndex;
+													$('#tooltip').remove();
+													var x = item.datapoint[0],
+														y = item.datapoint[1];
+														showTooltip(item.pageX, item.pageY, y+ x );
+												}
+											} else {
+												$('#tooltip').remove();
+												previousPoint = null;
+											}
+										});
+									
+									});
+									</script>
+							<!-- Graph HTML -->
+							<div id="graph-wrapper">
+								<div class="graph-container">
+									<div id="graph-lines"> </div>
+									<div id="graph-bars"> </div>
+								</div>
+							</div>
+							<!-- end Graph HTML -->
+							<!---//End-chart---->
+						</div>
+						<!---- status ---->
+						
+					</div>
+				</div>
+				<br>
+				<br>
+				<!---//col-2---->
+				<!--- col-3 ---->
+				<div class="col-md-3">
+					<div class="col-3">
+					
+						<div class="clearfix"> </div>
+						<div class="socail-btn-col1">
+							<ul>
+								<li><a href="http://68.232.126.94:8080?cmd=ON"><input class="twi-btn" type="button" value="Weekly Status" /></li>
+								<li><a href="http://68.232.126.94:8080?cmd=OFF"><input class="twi-btn" type="button" value="Monthly Status" /></li>
+								<li><a href="http://68.232.126.94:8080?cmd=OFF"><input class="twi-btn" type="button" value="Table Value" /></li>
+								<li><a href="http://68.232.126.94:8889"><input class="twi-btn" type="button" value="MAIN MENU" /></li>
+								<div class="clearfix"> </div>
+							</ul>
+						</div>
+					</div>
+				<!--- //col-3 ---->
+				</div>
+				<!--- col-4 ---->
+				<div class="col-4">
+					<div class="col-md-3">
+						
+						
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+		</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	var IPAddress="192.168.1.102";
+	var start;
+	var end;
+
+	//  Get current page url using JavaScript
+	var currentPageUrl = "";
+	if (typeof this.href === "undefined") {
+		    currentPageUrl = document.location.toString().toLowerCase();
+	}
+	else {
+	    currentPageUrl = this.href.toString().toLowerCase();
+	}
+
+	start=currentPageUrl.search("http://")+7;
+	end=currentPageUrl.search(":80");
+	IPAddress=currentPageUrl.substring(start,end);
+
+	document.getElementByClassName("socail-btn-col1..twi-btn").onclick = function () {
+	    location.href = "http://"+IPAddress+":8080?cmd=ON";
+	};
+
+	document.getElementById("OoffButton").onclick = function () {
+	    location.href = "http://"+IPAddress+":8080?cmd=OFF";
+	};
+
+</script>
+</html>
+

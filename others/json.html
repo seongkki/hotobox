@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+	function readwrite(){
+	$(document).ready(function() {
+        	$.getJSON('sensorVar.json', function(jd) {
+	//	console.log(jd);
+		send(jd);
+            	});
+        });
+	}
+            function send(data)
+            {
+                console.log(data);
+	        $.ajax
+		({
+		  type: "POST",
+		  url: "http://68.232.126.94:10109",
+		  crossDomain:true, 
+		  dataType: "json",
+		  data: JSON.stringify({"foo":"lorem","bar":"ipsum"}, null, '\t')
+		 }).done(function () {
+		//	console.log(data);
+		   })
+		} 
+        </script>
+    </head>
+    <body>
+        <button onclick="readwrite()">Click Me!</button>
+    </body>
+</html>

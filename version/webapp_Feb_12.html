@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Hotobox | Outlet Control</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="http://68.232.126.94:10110/socket.io/socket.io.js""></script>
+		 <!-- Custom Theme files -->
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+   		 <!-- Custom Theme files -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		</script>
+	</head>
+	<body>
+		<div class="main">
+		<!----container---->
+		<div class="container">
+			<!----- content ----->
+			<div class="4-col-grids">
+				<div class="col-md-3">
+					<div class="1-col-grids">
+						<!----profile---->
+						<div class="profile text-center">
+							<div class="profile-info">
+								<h2><a href="http://68.232.126.94:10110/bb.html">Outlet Control</a></h2>
+								<span>Hotobox | Electricity</span>
+							</div>
+						</div>
+						<br><br><br>
+					</div>
+				</div>
+				<!----col-2---->
+				<!---//col-2---->
+				<!--- col-3 ---->
+				<div class="col-md-3">
+					<div class="col-3">
+						<!---- to-day --->
+						<!---- to-day --->
+						<div class="status-head text-center">
+						<h3><br><br>
+						Temperature Sensor<br><br><br>
+	
+						<div class="clearfix"> </div>
+						<div class="socail-btn-col1">
+							<ul>
+							<li><input class="twi-btn" type="button" value="" /></li>
+							</ul>
+						</div>
+					</div></h3></div>
+				<br><br>
+				<div class="col-md-3">
+                                        <div class="col-3">
+                                                <!---- to-day --->
+                                                <!---- to-day --->
+                                                <div class="status-head2 text-center">
+                                                <h3><br><br>
+                                                Humidity Sensor<br><br><br>
+
+                                                <div class="clearfix"> </div>
+                                                <div class="socail-btn-col1">
+                                                        <ul>
+                                                        <li><input class="twi-btn" type="button" value="" /></li>
+                                                        </ul>
+                                                </div>
+                                        </div></h3></div>
+                                <br><br>
+				<div class="col-md-3">
+                                        <div class="col-3">
+                                                <!---- to-day --->
+                                                <!---- to-day --->
+                                                <div class="status-head3 text-center">
+                                                <h3><br><br>
+                                                Dust Sensor<br><br><br>
+
+                                                <div class="clearfix"> </div>
+                                                <div class="socail-btn-col1">
+                                                        <ul>
+                                                        <li><input class="twi-btn" type="button" value="" /></li>
+                                                        </ul>
+                                                </div>
+                                        </div></h3></div>
+                                <br><br>
+				 <div class="col-md-3">
+                                        <div class="col-3">
+                                                <!---- to-day --->
+                                                <!---- to-day --->
+                                                <div class="status-head4 text-center">
+                                                <h3><br><br>
+                                                Motion Sensor<br><br><br>
+
+                                                <div class="clearfix"> </div>
+                                                <div class="socail-btn-col1">
+                                                        <ul>
+                                                        <li><input class="twi-btn" type="button" value="" /></li>
+                                                        </ul>
+                                                </div>
+                                        </div></h3></div>
+                                <br><br>
+
+
+
+
+	</body>
+	<script>
+		var jsondat = "";
+	
+		var tempInt = 0;
+		var humidInt = 0;
+		var dustInt = 0;
+		var pirInt = 0;
+
+ 		var x = document.getElementsByClassName("twi-btn");
+		var socket = io.connect('68.232.126.94:10110');		
+
+
+		function sleep(milliseconds) {
+			var start = new Date().getTime();
+ 			for (var i = 0; i < 1e7; i++) {
+			    if ((new Date().getTime() - start) > milliseconds){
+		      		break;
+			    }	
+			}
+		}
+		
+		socket.on('notification', function (data) {
+			statCheck(data);
+		});
+		
+		
+		//update variable status on document load
+		$(document).ready(function() {
+			console.log("document loaded");
+			loadJSON();
+  		 });
+
+		$( window ).load(function() {
+       			console.log( "window loaded" );
+		});
+
+
+		function loadJSON() {
+                        $.getJSON('sensorVar.json', function(jd) {
+				console.log("IS LOADING JSON");
+               			statCheck(jd); 
+			//	updateVar(jd);      	
+                        });
+			 $.getJSON('inter.json', function(jd) {
+                                console.log("IS LOADING JSON");
+                         //     statCheck(jd);
+  //                              updateVar(jd);
+				jsondat = jd;
+                        });
+                }
+	
+		function statCheck(jd){
+                	console.log("status check complete");
+                	iterationCheck(x[0], jd.counter.temp);
+                	iterationCheck(x[1], jd.counter.humid);
+                	iterationCheck(x[2], jd.counter.dust);
+			iterationCheck(x[3], jd.counter.pir);
+                }
+/*
+		function updateVar(jd)
+		{
+			jsondat = jd;
+		}
+*/
+		function iterationCheck(button, iteration) {
+			if(button != x[3])
+			{
+                        	if (iteration % 3 == 0)
+	                        {
+        	                        button.style.backgroundColor = "#FF6666";
+                	                button.setAttribute("value", "SENSOR OFF");
+                        	}
+	                        else if (iteration % 3 == 1)
+        	                {
+                	                button.style.backgroundColor = "#00b0f0";
+                        	        button.setAttribute("value", "SENSOR ON");
+	                        }
+        	                else
+                	        {
+                        	        button.style.backgroundColor = "green";
+                                	button.setAttribute("value", "AUTO MODE");
+	                        }
+                	}
+			else
+			{
+				if (iteration % 2 == 0)
+				{
+                                        button.style.backgroundColor = "#FF6666";
+                                        button.setAttribute("value", "SENSOR OFF");
+                                }
+				else
+				{
+					button.style.backgroundColor = "#00b0f0";
+                                        button.setAttribute("value", "SENSOR ON");
+				}
+			}
+		}
+
+		function writeJSON() {
+                        jsondat.interrupt.temp = tempInt;		
+                        jsondat.interrupt.humid = humidInt;		
+                        jsondat.interrupt.dust = dustInt;		
+                        jsondat.interrupt.pir = pirInt;		
+                        $.ajax
+                        ({
+                                type: "POST",
+                                url: "http://68.232.126.94:10110",
+                                crossDomain:true,
+                                dataType: "json",
+                                data: JSON.stringify(jsondat, null, 4),
+				success: function() {
+					console.log("written success");
+				}
+                        }).done(function () {
+				console.log("done fucntion called");
+			})
+			
+
+                }
+		
+		//temperature sensor on click
+                x[0].onclick = function () {
+                        tempInt = 1;
+			writeJSON();
+                }
+
+		//humid sensor on click
+		x[1].onclick = function () {
+                        humidInt = 1;
+                        writeJSON();
+                }
+		//dust sensor on click
+                x[2].onclick = function () {
+                        dustInt = 1;
+                        writeJSON();
+                }
+		//pir sensor on click
+                x[3].onclick = function () {
+                        pirInt = 1;
+                        writeJSON();
+                }
+	
+
+
+</script>

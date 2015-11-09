@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Hotobox | Outlet Control</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="http://68.232.126.94:10110/socket.io/socket.io.js""></script>
+		 <!-- Custom Theme files -->
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+   		 <!-- Custom Theme files -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		</script>
+	</head>
+	<body>
+		<div class="main">
+		<div class="container">
+			<div class="4-col-grids">
+				<div class="col-md-3">
+					<div class="1-col-grids">
+						<div class="profile text-center">
+							<div class="profile-info">
+								<h2><a href="http://68.232.126.94:10110/bb.html">Outlet Control</a></h2>
+								<span>Hotobox | Sensors</span>
+							</div>
+						</div>
+						<br><br><br>
+					</div>
+				</div>
+				<div class="col-md-3">
+                                        <div class="col-3">
+                                                <div class="status-head2 text-center">
+                                                <h3><br><br>
+                                                Electricity Outlets<br><br><br>
+
+                                                <div class="clearfix"> </div>
+                                                <div class="socail-btn-col3">
+                                                        <ul>
+                                                        <li><input class="port-btn" type="button" value="ON" /></li>
+                                                        <li><input class="port-btn" type="button" value="OFF" /></li>
+                                                        <li><input class="port-btn" type="button" value="NA" /></li>
+                                                        <li><input class="port-btn" type="button" value="NA" /></li>
+                                                        </ul>
+                                                </div>
+                                        </div></h3></div>
+                                <br><br>
+			</div>
+		</div>
+
+	</body>
+	<script>
+		var jsondat;
+	
+		var tempInt = 0;
+		var humidInt = 0;
+		var dustInt = 0;
+		var extraInt = 0;
+
+ 		var x = document.getElementsByClassName("port-btn");
+		var socket = io.connect('68.232.126.94:10110');		
+
+
+		socket.on('notification', function (data) {
+			statCheck(data);
+		});
+		
+		
+		//update variable status on document load
+		$(document).ready(function() {
+			console.log("document loaded");
+			loadJSON();
+  		 });
+
+		$(window).load(function() {
+       			console.log("window loaded");
+		});
+
+
+		function loadJSON() {
+                        $.getJSON('rel_on.json', function(jd) {
+				console.log("IS LOADING COUNTER JSON");
+               			statCheck(jd); 
+                        });
+			 $.getJSON('rel_int.json', function(jd) {
+                                console.log("IS LOADING INTERUPT JSON");
+				jsondat = jd;
+                        });
+                }
+	
+		function statCheck(jd){
+                	console.log("status check complete");
+                	iterationCheck(x[0], jd.ON.temp);
+                	iterationCheck(x[1], jd.ON.humid);
+                	iterationCheck(x[2], jd.ON.dust);
+			iterationCheck(x[3], jd.ON.extra);
+                }
+
+		
+			function iterationCheck(button, iteration) {
+			if (iteration == 0)
+	                {
+        	        	button.style.borderColor = "#FF6666";
+				button.setAttribute("value", "OFF");
+                        }
+	                else if (iteration == 1)
+        	        {
+                		button.style.borderColor = "#00b0f0";
+                        	button.setAttribute("value", "ON");
+	                }
+        	        else
+                	{
+                        	button.style.boarderColor = "green";
+                                button.setAttribute("value", "NA");
+	                }
+		}
+
+		var sender = 1;
+		function writeJSON(sender) {
+                        jsondat.interrupt.temp = tempInt;		
+                        jsondat.interrupt.humid = humidInt;		
+                        jsondat.interrupt.dust = dustInt;		
+                        jsondat.interrupt.extra = extraInt;		
+			$.ajax
+                        ({
+                                type: "POST",
+                                url: "http://68.232.126.94:10110",
+                                crossDomain:true,
+                                dataType: "json",
+                                data:JSON.stringify(jsondat, null, 4),
+				success: function() {
+					console.log("written success");
+				}
+                        }).done(function (sender) {
+				console.log("done fucntion called");
+			})
+			
+
+                }
+		
+		//temperature sensor on click
+                x[0].onclick = function () {
+                        tempInt = 1;
+			writeJSON();
+			tempInt = 0;
+                }
+
+		//humid sensor on click
+		x[1].onclick = function () {
+                        humidInt = 1;
+                        writeJSON();
+                        humidInt = 0;
+                }
+		//dust sensor on click
+                x[2].onclick = function () {
+                        dustInt = 1;
+                        writeJSON();
+                        dustInt = 0;
+                }
+		//extra button on click
+                x[3].onclick = function () {
+                        extraInt = 1;
+                        writeJSON();
+                        extraInt = 0;
+			
+                }
+	
+
+
+</script>

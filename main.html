@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Hotobox | Main Menu</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="Hotobox main page, has sensor options + port options"/>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		 <!-- Custom Theme files -->
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+   		 <!-- Custom Theme files -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		</script>
+	</head>
+	<body>
+		<div class="main">
+		<div class="container">
+			<div class="4-col-grids">
+				<div class="col-md-3">
+					<div class="1-col-grids">
+						<div class="profile text-center">
+							<div class="profile-head">
+								<a href="http://68.232.126.94:10110"><span><br><br></span></a>
+							</div>
+							<div class="profile-info">
+								<h2><a href="http://68.232.126.94:10110"><br><br> </a></h2>
+								<span> </span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+				<br>
+				<div class="col-md-3">
+					<div class="col-3">
+						
+					
+						<div class="socail-btn-col1">
+							<ul>
+								<li><a id="temp"><input class="sensor-btn" type="button" value="Temperature"/></li>			
+								<li><a id="humid"><input class="sensor-btn" type="button" value="Humidity" /></li>
+								<li><a id="dust"><input class="sensor-btn" type="button" value="Dust" /></li>
+								<li><a id="motion"><input class="sensor-btn" type="button" value="Motion" /></li>
+								<li><a id="sensor"><input class="twi-btn" type="button" value="Sensor Control"/></li>
+								<li><a id="relay"><input class="twi-btn" type="button" value="Outlet Control"/></li>
+								<div class="clearfix"> </div>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+						<script type='text/javascript' src="js/select.js"></script>
+						<div class="option-menu">
+							<form action="#">
+								<p>
+									<select class="turnintodropdown">
+										<option>Navigate to ...</option>
+											<option><a href="http://68.232.126.94:10110/bb.html">Home Menu</option>
+							  				<option>Temperature</option>
+							  				<option>Humid</option>
+							  				<option>Dust</option>
+							  				<option>Sensor</option>
+									</select>
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+		</div>
+		</div>
+	</body>
+
+<script type="text/javascript">
+
+	var IPAddress;
+	var start;
+	var end;
+	var port = ":10110";
+	var url;
+
+	var currentPageUrl = "";
+	
+	if (typeof this.href === "undefined") {
+		currentPageUrl = document.location.toString().toLowerCase();
+	}
+	else {
+		currentPageUrl = this.href.toString().toLowerCase();
+	}
+ 
+	start=currentPageUrl.search("http://")+7;
+	end=currentPageUrl.search(":10110");
+	IPAddress=currentPageUrl.substring(start,end);
+
+	console.log(IPAddress+port);
+	
+	document.getElementById("temp").setAttribute("href", "web/temp.html");
+	document.getElementById("humid").setAttribute("href", "web/humid.html");
+	document.getElementById("dust").setAttribute("href", "web/dust.html");
+	document.getElementById("motion").setAttribute("href", "web/motion.html");
+	document.getElementById("sensor").setAttribute("href", "sensor.html");
+	document.getElementById("relay").setAttribute("href", "relay.html");
+
+</script>
+
+</html>
+
